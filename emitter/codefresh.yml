@@ -16,6 +16,7 @@ steps:
     image: node
     title: Running Unit tests
     stage: test
+    working_directory: ${{main_clone}}/emitter
     commands:
       - npm install
       - npm test

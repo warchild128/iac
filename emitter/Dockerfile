@@ -7,7 +7,7 @@ RUN apk add --no-cache nodejs tini
 WORKDIR /root/emitter
 
 # copy project file
-COPY package.json .
+COPY emitter/package.json .
 
 # set NODE_ENV
 ENV NODE_ENV production
