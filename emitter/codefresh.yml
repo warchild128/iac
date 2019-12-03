@@ -25,7 +25,8 @@ steps:
     type: "build"
     image_name: "warchild128/emitter"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
-    dockerfile: emitter/Dockerfile
+    dockerfile: Dockerfile
+    working_directory: ${{main_clone}}/emitter
     stage: "build"
   approval_for_push:
     type: "pending-approval"
