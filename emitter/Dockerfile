@@ -13,7 +13,10 @@ COPY package.json .
 ENV NODE_ENV production
 
 # install node packages
-RUN npm install && \
+RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
+    npm set progress=false && \
+    npm config set depth 0 && \
+    npm install && \
     npm cache clean && \
     apk del .build-dep && \
     rm -rf /tmp/*
