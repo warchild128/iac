@@ -7,7 +7,7 @@ RUN apk add --no-cache nodejs tini
 WORKDIR /root/emitter
 
 # copy project file
-COPY ./emitter/package.json .
+COPY package.json .
 
 # set NODE_ENV
 ENV NODE_ENV production
@@ -19,7 +19,7 @@ RUN npm install && \
     rm -rf /tmp/*
 
 # copy app files
-COPY ./emitter .
+COPY . .
 
 # Set tini as entrypoint
 ENTRYPOINT ["/sbin/tini", "--"]
