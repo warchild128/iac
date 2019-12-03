@@ -1,25 +1,16 @@
-FROM alpine:3.5
-
-# install node
-RUN apk add --no-cache nodejs tini
+FROM node:10
 
 # set working directory
 WORKDIR /root/emitter
 
 # copy project file
-COPY package.json .
+COPY package*.json ./
 
 # set NODE_ENV
 ENV NODE_ENV production
 
 # install node packages
-RUN apk add --no-cache --virtual .build-dep python make g++ krb5-dev && \
-    npm set progress=false && \
-    npm config set depth 0 && \
-    npm install && \
-    npm cache clean && \
-    apk del .build-dep && \
-    rm -rf /tmp/*
+RUN npm install
 
 # copy app files
 COPY . .
@@ -28,6 +19,6 @@ COPY . .
 ENTRYPOINT ["/sbin/tini", "--"]
 
 #application server
-EXPOSE 5000
+EXPOSE 8080
 
-CMD npm run start
+CMD [ "node", "index.js" ]
