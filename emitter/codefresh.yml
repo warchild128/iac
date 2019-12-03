@@ -24,8 +24,7 @@ steps:
     type: "build"
     image_name: "warchild128/emitter"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
-    dockerfile:
-      content: "FROM node:10.13.0-alpine\n          WORKDIR /root/onboarding\n          COPY . /\n          CMD npm start"
+    dockerfile: emitter/Dockerfile
     stage: "build"
   approval_for_push:
     type: "pending-approval"
